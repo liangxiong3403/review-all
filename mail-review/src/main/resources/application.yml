@@ -1,0 +1,9 @@
+spring:
+    mail:
+        host: smtp.qq.com
+        port: 25
+        username: 1071608617@qq.com
+        password: password
+        protocol: smtp
+server:
+    port: 8080

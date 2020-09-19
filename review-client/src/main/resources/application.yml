@@ -1,0 +1,17 @@
+server:
+    port: 8082
+spring:
+    boot:
+        admin:
+            client:
+                url: http://localhost:8083
+    datasource:
+        url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: admin
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"

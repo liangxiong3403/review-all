@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.liangxiong</groupId>
+        <artifactId>review-all</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>review-client</artifactId>
+    <version>${project.parent.version}</version>
+    <name>review-client</name>
+    <description>客户端</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.liangxiong</groupId>
+            <artifactId>review-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liangxiong</groupId>
+            <artifactId>review-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liangxiong</groupId>
+            <artifactId>review-common</artifactId>
+        </dependency>
+        <!-- web相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- security相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- spring boot admin 客户端 -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${boot-admin.version}</version>
+        </dependency>
+        <!-- websocket相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <!-- webservice相关依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+        <!-- h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.3.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <!-- generator配置文件位置 -->
+                    <configurationFile>${basedir}/src/test/resources/mybatis/generator-config.xml</configurationFile>
+                </configuration>
+                <!-- 配置插件所需要地依赖 -->
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <scope>runtime</scope>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.5.5</version>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/test1?serverTimezone=Asia/Shanghai</url>
+                    <user>root</user>
+                    <password>admin</password>
+                    <driver>com.mysql.cj.jdbc.Driver</driver>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.github.shalousun</groupId>
+                <artifactId>smart-doc-maven-plugin</artifactId>
+                <version>1.1.8</version>
+                <configuration>
+                    <!--Specify the configuration file used to generate the document-->
+                    <configFile>src/main/resources/smart-doc.json</configFile>
+                    <!--smart-doc implements automatic analysis of the dependency tree to load the source code of third-party dependencies. If some framework dependency libraries are not loaded, an error is reported, then use excludes to exclude-->
+                    <excludes>
+                        <!--The format is: groupId: artifactId; refer to the following-->
+                        <exclude>com.google.guava:guava</exclude>
+                    </excludes>
+                    <!--Since version 1.0.8, the plugin provides includes support-->
+                    <!--smart-doc can automatically analyze the dependency tree to load all dependent source code. In principle, it will affect the efficiency of document construction, so you can use includes to let the plugin load the components you configure.-->
+                    <includes>
+                        <!--The format is: groupId: artifactId; refer to the following-->
+                        <include>com.alibaba:fastjson</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <!--Comment out phase if you don't need to start smart-doc when compiling-->
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>html</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

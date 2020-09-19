@@ -1,0 +1,1 @@
+INSERT INTO `person`(`id`, `title`, `firstName`, `lastName`) VALUES (1, 'test', '欧阳', '娜拉');
