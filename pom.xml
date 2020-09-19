@@ -36,6 +36,7 @@
         <module>review-api</module>
         <module>review-server</module>
         <module>review-client</module>
+        <module>eureka</module>
     </modules>
 
     <dependencyManagement>
@@ -98,7 +99,17 @@
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
-                <artifactId>review-web</artifactId>
+                <artifactId>review-client</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.liangxiong</groupId>
+                <artifactId>review-server</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.liangxiong</groupId>
+                <artifactId>eureka</artifactId>
                 <version>1.0.0</version>
             </dependency>
         </dependencies>
@@ -119,5 +130,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

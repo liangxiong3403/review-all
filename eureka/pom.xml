@@ -9,28 +9,13 @@
     </parent>
     <version>${project.parent.version}</version>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>review-api</artifactId>
-
+    <artifactId>eureka</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.liangxiong</groupId>
-            <artifactId>review-common</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- feign -->
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- hystrix -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-            <optional>true</optional>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
     </build>

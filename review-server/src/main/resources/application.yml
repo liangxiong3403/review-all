@@ -30,6 +30,8 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
         password: admin
+    application:
+        name: review-server
 elasticsearch:
     cluster-name: liangxiong
     cluster-nodes: 192.168.199.2:9200,192.168.199.3:9200,192.168.199.4:9200
@@ -40,3 +42,7 @@ management:
         web:
             exposure:
                 include: "*"
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:9999/eureka/

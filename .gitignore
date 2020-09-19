@@ -39,4 +39,5 @@ review-client/target
 review-server/target
 review-common/target
 review-core/target
+eureka/target
 
