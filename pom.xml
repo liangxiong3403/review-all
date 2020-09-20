@@ -25,6 +25,7 @@
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
         <redisson.version>3.12.4</redisson.version>
         <h2.version>1.4.200</h2.version>
+        <xxl-job.version>2.2.0</xxl-job.version>
     </properties>
 
     <modules>

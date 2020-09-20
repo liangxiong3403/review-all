@@ -60,6 +60,12 @@
             <artifactId>redisson</artifactId>
             <version>${redisson.version}</version>
         </dependency>
+        <!-- xxl-job定时调度核心包 -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>${xxl-job.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
