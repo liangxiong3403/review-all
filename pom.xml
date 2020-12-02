@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.liangxiong</groupId>
     <artifactId>review-all</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0.RELEASE</version>
     <packaging>pom</packaging>
     <name>review-all</name>
     <description>review for all what i know</description>
@@ -48,6 +48,10 @@
         <commons.codec.version>1.15</commons.codec.version>
         <commons.lang3.version>3.11</commons.lang3.version>
         <commons.io.version>2.8.0</commons.io.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <versions.maven.plugin.version>2.8.1</versions.maven.plugin.version>
+        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+        <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
     </properties>
 
     <modules>
@@ -93,47 +97,47 @@
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>review-common</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>review-core</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>mail-review</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>message-review</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>file-review</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>review-api</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>review-client</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>review-server</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>eureka</artifactId>
-                <version>1.0.0</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -144,11 +148,53 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 统一管理项目版本号,统一升级项目依赖 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions.maven.plugin.version}</version>
+            </plugin>
+            <!-- 打包源代码插件,手动指定执行阶段语义 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.source.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <!-- 源码打包在package阶段 -->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 执行命令 -->
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 文档注释打包插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- 忽略失败 -->
+                    <failOnError>false</failOnError>
+                    <!-- 不检查注释 -->
+                    <doclint>none</doclint>
                 </configuration>
             </plugin>
         </plugins>
