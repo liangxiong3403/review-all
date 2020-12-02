@@ -41,6 +41,13 @@
         <spring.shell.starter.version>2.0.1.RELEASE</spring.shell.starter.version>
         <lettuce.version>6.0.1.RELEASE</lettuce.version>
         <caffeine.version>2.8.6</caffeine.version>
+        <hutool.version>5.5.1</hutool.version>
+        <itextpdf.version>5.5.13.2</itextpdf.version>
+        <easyexcel.version>2.2.6</easyexcel.version>
+        <commons.collections4.version>4.4</commons.collections4.version>
+        <commons.codec.version>1.15</commons.codec.version>
+        <commons.lang3.version>3.11</commons.lang3.version>
+        <commons.io.version>2.8.0</commons.io.version>
     </properties>
 
     <modules>
