@@ -1,6 +1,7 @@
 package org.liangxiong.review.client.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.*;
 
 /**
@@ -24,4 +25,9 @@ public class Person {
 
     private String lastName;
 
+    /**
+     * 逻辑删除字段
+     */
+    @TableLogic
+    private Boolean delete;
 }

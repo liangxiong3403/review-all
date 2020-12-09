@@ -24,3 +24,12 @@ eureka:
 feign:
     hystrix:
         enabled: true
+mybatis-plus:
+    global-config:
+        db-config:
+            # 逻辑删除字段(since 3.3.0,配置后可以忽略不配置步骤2)
+            logic-delete-field: delete
+            logic-delete-value: 1
+            logic-not-delete-value: 0
+    # 通用枚举类包扫描
+    type-enums-package: org.liangxiong.review.client.enums

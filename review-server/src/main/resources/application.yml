@@ -46,3 +46,10 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:9999/eureka/
+mybatis-plus:
+    global-config:
+        db-config:
+            # 逻辑删除字段(since 3.3.0,配置后可以忽略不配置步骤2)
+            logic-delete-field: delete
+            logic-delete-value: 1
+            logic-not-delete-value: 0
