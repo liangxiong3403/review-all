@@ -197,6 +197,12 @@
                     <doclint>none</doclint>
                 </configuration>
             </plugin>
+            <!-- 配置文件加密插件 -->
+            <plugin>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-maven-plugin</artifactId>
+                <version>${jasypt.version}</version>
+            </plugin>
         </plugins>
     </build>
 </project>
