@@ -206,7 +206,12 @@
                     <doclint>none</doclint>
                 </configuration>
             </plugin>
-            <!-- 配置文件加密插件 -->
+            <!--
+            配置文件加密
+            mvn jasypt:encrypt-value -Djasypt.encryptor.password="自定义密钥字符串" -Djasypt.plugin.value="需要被加密地字符串"
+            配置文件解密
+            mvn jasypt:decrypt-value -Djasypt.encryptor.password="自定义密钥字符串" -Djasypt.plugin.value="gUGoGAvZNC0V0j0+0YBb5N4dNjB+4a0IBvJkrPK2Dt6hJ1H2jIS3AKA1HQeTeE7u"
+            -->
             <plugin>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-maven-plugin</artifactId>
