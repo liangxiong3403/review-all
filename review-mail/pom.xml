@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>mail-review</artifactId>
-    <version>${project.parent.version}</version>
-    <name>mail-review</name>
-    <description>邮件发送组件</description>
     <parent>
         <groupId>org.liangxiong</groupId>
         <artifactId>review-all</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
+    <version>${project.parent.version}</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>review-mail</artifactId>
+    <name>review-mail</name>
+    <description>邮件发送组件</description>
     <dependencies>
         <dependency>
             <groupId>org.liangxiong</groupId>
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.simplejavamail</groupId>
             <artifactId>simple-java-mail</artifactId>
-            <version>6.4.3</version>
+            <version>${simple-java-mail.version}</version>
         </dependency>
         <!-- spring官方提供发送邮件客户端 -->
         <dependency>
@@ -33,7 +33,4 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
-    </build>
 </project>

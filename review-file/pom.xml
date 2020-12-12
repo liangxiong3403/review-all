@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.liangxiong</groupId>
-    <artifactId>file-review</artifactId>
-    <version>${project.parent.version}</version>
-    <name>file-review</name>
-    <description>文件服务器相关组件</description>
     <parent>
         <groupId>org.liangxiong</groupId>
         <artifactId>review-all</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
+    <version>${project.parent.version}</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>review-file</artifactId>
+    <name>review-file</name>
+    <description>文件服务器相关组件</description>
     <dependencies>
         <dependency>
             <groupId>org.liangxiong</groupId>
@@ -21,13 +20,13 @@
         <dependency>
             <groupId>net.oschina.zcx7878</groupId>
             <artifactId>fastdfs-client-java</artifactId>
-            <version>1.27.0.0</version>
+            <version>${fastdfs.oschina.version}</version>
         </dependency>
         <!-- fastdfs 客户端方式二 -->
         <dependency>
             <groupId>com.github.tobato</groupId>
             <artifactId>fastdfs-client</artifactId>
-            <version>1.27.2</version>
+            <version>${fastdfs.tobato.version}</version>
         </dependency>
     </dependencies>
 </project>

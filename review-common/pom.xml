@@ -6,10 +6,10 @@
         <artifactId>review-all</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
+    <version>${project.parent.version}</version>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>review-common</artifactId>
     <name>review-common</name>
-    <version>${project.parent.version}</version>
     <description>公共依赖包</description>
     <dependencies>
         <!-- 处理Getter Setter模板代码生成 -->
@@ -30,7 +30,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
-        <!-- 处理@ConfigurationProperties配置实体的元数据文件metadata.json生成 -->
+        <!-- 处理@ConfigurationProperties配置,打包的时候生成元数据文件metadata.json -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -147,7 +147,4 @@
             <version>${caffeine.version}</version>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
-    </build>
 </project>

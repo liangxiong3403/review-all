@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.liangxiong</groupId>
         <artifactId>review-all</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
-    <artifactId>review-client</artifactId>
     <version>${project.parent.version}</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>review-client</artifactId>
     <name>review-client</name>
     <description>客户端</description>
     <dependencies>
@@ -88,6 +88,12 @@
             <groupId>org.camunda.bpm.springboot</groupId>
             <artifactId>camunda-bpm-spring-boot-starter</artifactId>
             <version>${camunda.boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.camunda.bpm.springboot</groupId>
@@ -117,7 +123,7 @@
                 <dependency>
                     <groupId>org.springframework.cloud</groupId>
                     <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-                    <version>2.2.4.RELEASE</version>
+                    <version>${spring.cloud.consul.version}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -133,7 +139,7 @@
                 <dependency>
                     <groupId>org.springframework.cloud</groupId>
                     <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
-                    <version>2.2.3.RELEASE</version>
+                    <version>${spring.cloud.zookeeper.version}</version>
                     <exclusions>
                         <exclusion>
                             <groupId>org.apache.zookeeper</groupId>
@@ -144,7 +150,7 @@
                 <dependency>
                     <groupId>org.apache.zookeeper</groupId>
                     <artifactId>zookeeper</artifactId>
-                    <version>3.4.14</version>
+                    <version>${zookeeper.version}</version>
                     <exclusions>
                         <exclusion>
                             <groupId>org.slf4j</groupId>
@@ -166,13 +172,12 @@
                 <dependency>
                     <groupId>com.alibaba.cloud</groupId>
                     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                    <version>2.2.1.RELEASE</version>
+                    <version>${spring.cloud.nacos.version}</version>
                 </dependency>
             </dependencies>
         </profile>
     </profiles>
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -189,7 +194,7 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.4.0</version>
+                <version>${mybatis-generator-plugin.version}</version>
                 <configuration>
                     <!-- generator配置文件位置 -->
                     <configurationFile>${basedir}/src/test/resources/mybatis/generator-config.xml</configurationFile>
@@ -207,7 +212,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>6.5.5</version>
+                <version>${flyway-maven-plugin.version}</version>
                 <configuration>
                     <url>jdbc:mysql://localhost:3306/test1?serverTimezone=Asia/Shanghai</url>
                     <user>root</user>
@@ -225,7 +230,7 @@
             <plugin>
                 <groupId>com.github.shalousun</groupId>
                 <artifactId>smart-doc-maven-plugin</artifactId>
-                <version>1.1.8</version>
+                <version>${smart-doc-plugin.version}</version>
                 <configuration>
                     <!--Specify the configuration file used to generate the document-->
                     <configFile>src/main/resources/smart-doc.json</configFile>

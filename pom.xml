@@ -11,11 +11,14 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.encoding>UTF-8</java.encoding>
+        <project.build.sourceEncoding>${java.encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${java.encoding}</project.reporting.outputEncoding>
         <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
+        <spring.cloud.consul.version>2.2.4.RELEASE</spring.cloud.consul.version>
+        <spring.cloud.zookeeper.version>2.2.3.RELEASE</spring.cloud.zookeeper.version>
+        <spring.cloud.nacos.version>2.2.1.RELEASE</spring.cloud.nacos.version>
         <boot-admin.version>2.3.0</boot-admin.version>
-        <mysql.version>8.0.21</mysql.version>
         <pagehelper.version>5.2.0</pagehelper.version>
         <mysql.version>8.0.21</mysql.version>
         <druid.version>1.1.24</druid.version>
@@ -23,6 +26,7 @@
         <springfox.version>3.0.0</springfox.version>
         <mybatis-starter.version>2.1.3</mybatis-starter.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <mybatis-generator-plugin.version>1.4.0</mybatis-generator-plugin.version>
         <redisson.version>3.12.4</redisson.version>
         <h2.version>1.4.200</h2.version>
         <xxl-job.version>2.2.0</xxl-job.version>
@@ -52,12 +56,23 @@
         <versions.maven.plugin.version>2.8.1</versions.maven.plugin.version>
         <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
+        <log4j12.version>1.7.30</log4j12.version>
+        <kafka.version>2.5.0</kafka.version>
+        <simple-java-mail.version>6.4.4</simple-java-mail.version>
+        <hanlp.version>portable-1.7.8</hanlp.version>
+        <thumbnailator.version>0.4.13</thumbnailator.version>
+        <protostuff.version>1.7.2</protostuff.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
+        <fastdfs.oschina.version>1.27.0.0</fastdfs.oschina.version>
+        <fastdfs.tobato.version>1.27.2</fastdfs.tobato.version>
+        <flyway-maven-plugin.version>6.5.5</flyway-maven-plugin.version>
+        <smart-doc-plugin.version>1.1.8</smart-doc-plugin.version>
     </properties>
 
     <modules>
-        <module>mail-review</module>
-        <module>message-review</module>
-        <module>file-review</module>
+        <module>review-mail</module>
+        <module>review-message</module>
+        <module>review-file</module>
         <module>review-common</module>
         <module>review-core</module>
         <module>review-api</module>
@@ -89,12 +104,6 @@
                 <type>jar</type>
             </dependency>
             <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.1.2</version>
-                <type>jar</type>
-            </dependency>
-            <dependency>
                 <groupId>org.liangxiong</groupId>
                 <artifactId>review-common</artifactId>
                 <version>${project.version}</version>
@@ -106,17 +115,17 @@
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
-                <artifactId>mail-review</artifactId>
+                <artifactId>review-mail</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
-                <artifactId>message-review</artifactId>
+                <artifactId>review-message</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.liangxiong</groupId>
-                <artifactId>file-review</artifactId>
+                <artifactId>review-file</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -152,7 +161,7 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${java.encoding}</encoding>
                 </configuration>
             </plugin>
             <!-- 统一管理项目版本号,统一升级项目依赖 -->
