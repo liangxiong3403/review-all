@@ -233,7 +233,13 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <fork>true</fork>
+                    <!--
+                     远程debug方式1(plugin未配置jvmArguments): java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar demo.jar
+                     远程debug方式2(plugin已经配置jvmArguments): mvn spring-boot:run
+                     -->
+                    <jvmArguments>
+                        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+                    </jvmArguments>
                 </configuration>
                 <executions>
                     <execution>
