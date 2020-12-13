@@ -188,7 +188,7 @@
                      mvn spring-boot:run这种方式依赖于pom.xml文件的maven插件执行
                      -->
                     <jvmArguments>
-                        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+                        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006
                     </jvmArguments>
                 </configuration>
                 <executions>
