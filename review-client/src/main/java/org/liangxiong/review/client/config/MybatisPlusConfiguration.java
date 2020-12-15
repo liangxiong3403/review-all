@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -25,10 +26,16 @@ public class MybatisPlusConfiguration implements MetaObjectHandler {
         Object createTime = getFieldValByName("createTime", metaObject);
         Object createBy = getFieldValByName("createBy", metaObject);
         if (null == createTime) {
-            setFieldValByName("createTime", new Date(), metaObject);
+            // 方式1
+            //setFieldValByName("createTime", new Date(), metaObject);
+            // 方式2
+            this.strictInsertFill(metaObject, "createTime", () -> LocalDateTime.now(), LocalDateTime.class);
         }
         if (null == createBy) {
-            setFieldValByName("createBy", "Administrator", metaObject);
+            // 方式1
+            //setFieldValByName("createBy", "Administrator", metaObject);
+            // 方式2
+            this.strictInsertFill(metaObject, "createBy", () -> "Administrator", String.class);
         }
     }
 
@@ -41,7 +48,10 @@ public class MybatisPlusConfiguration implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         Object updateTime = getFieldValByName("updateTime", metaObject);
         if (null == updateTime) {
-            setFieldValByName("updateTime", new Date(), metaObject);
+            // 方式1
+            //setFieldValByName("updateTime", new Date(), metaObject);
+            // 方式2
+            this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
         }
     }
 }
