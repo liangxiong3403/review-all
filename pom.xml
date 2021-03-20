@@ -35,7 +35,7 @@
         <jasypt.version>3.0.3</jasypt.version>
         <j2cache.boot.version>2.8.0-release</j2cache.boot.version>
         <google.zxing.version>3.4.1</google.zxing.version>
-        <lombok.version>1.18.16</lombok.version>
+        <lombok.version>1.18.18</lombok.version>
         <fastjson.version>1.2.75</fastjson.version>
         <camunda.boot.version>7.14.0</camunda.boot.version>
         <jackson.dataformat.xml.version>2.11.2</jackson.dataformat.xml.version>

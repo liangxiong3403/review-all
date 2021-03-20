@@ -1,12 +1,16 @@
 package org.liangxiong.review.client.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.liangxiong.review.client.enums.SexEnum;
+
+import java.time.LocalDateTime;
 
 /**
  * @author liangxiong
@@ -42,9 +46,32 @@ public class User {
     /**
      * 逻辑删除字段
      */
+    @JsonIgnore
     @TableLogic
-    private Boolean delete;
+    @TableField(fill = FieldFill.INSERT)
+    private Integer deleted;
 
-    @JSONField(serialzeFeatures= SerializerFeature.WriteEnumUsingToString)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime createdTime;
+
+    @TableField(fill = FieldFill.INSERT)
+    private String createdBy;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updatedTime;
+
+    @TableField(fill = FieldFill.UPDATE)
+    private String updatedBy;
+
+    /**
+     * 数据库最好使用int类型;虽然高版本mybatis-plus可以识别数据库tinyint类型的枚举
+     */
     private SexEnum sex;
+
+    /**
+     * 租户id
+     */
+    private Long tenantId;
 }

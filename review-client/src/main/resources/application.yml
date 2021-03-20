@@ -33,3 +33,4 @@ mybatis-plus:
             logic-not-delete-value: 0
     # 通用枚举类包扫描
     type-enums-package: org.liangxiong.review.client.enums
+    mapper-locations: classpath*:/mapper/**/*.xml
