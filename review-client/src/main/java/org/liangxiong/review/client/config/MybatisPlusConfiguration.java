@@ -128,7 +128,10 @@ public class MybatisPlusConfiguration implements MetaObjectHandler {
         @Override
         public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
             List<AbstractMethod> methodList = super.getMethodList(mapperClass);
+            // 根据id逻辑删除并自动填充字段
             methodList.add(new LogicDeleteByIdWithFill());
+            // 根据id逻辑批量删除并自动填充字段
+            methodList.add(new LogicBatchDeleteWithFill());
             return methodList;
         }
     }

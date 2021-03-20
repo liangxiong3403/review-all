@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.liangxiong.review.client.enums.SexEnum;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author liangxiong
@@ -74,4 +75,7 @@ public class User {
      * 租户id
      */
     private Long tenantId;
+
+    @TableField(exist = false)
+    private List<Long> ids;
 }

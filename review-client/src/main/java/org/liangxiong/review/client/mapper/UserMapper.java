@@ -11,4 +11,7 @@ import org.liangxiong.review.client.entity.User;
  **/
 public interface UserMapper extends BaseMapper<User> {
 
+    Integer deleteByIdWithFill(User user);
+
+    Integer batchDeleteWithFill(User user);
 }
