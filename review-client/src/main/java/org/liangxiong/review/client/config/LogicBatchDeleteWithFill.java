@@ -55,6 +55,9 @@ public class LogicBatchDeleteWithFill extends AbstractMethod {
             sql = String.format(sqlMethod.getSql(), tableInfo.getTableName(), tableInfo.getKeyColumn(),
                     SqlScriptUtils.convertForeach("#{item}", PARAM_IDS, null, "item", COMMA));
         }
+        /*
+         * 参数类型必须使用modelClass,不然修改填充字段无法执行
+         */
         SqlSource sqlSource = languageDriver.createSqlSource(configuration, sql, modelClass);
         return addUpdateMappedStatement(mapperClass, modelClass, getMethod(sqlMethod), sqlSource);
     }
