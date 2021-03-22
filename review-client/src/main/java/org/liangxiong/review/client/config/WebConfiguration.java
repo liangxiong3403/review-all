@@ -51,7 +51,10 @@ public class WebConfiguration implements WebMvcConfigurer {
         FastJsonConfig config = new FastJsonConfig();
         // SerializerFeature.DisableCircularReferenceDetect禁用循环引用检测
         config.setSerializerFeatures(SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
-                SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.WriteNullBooleanAsFalse, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.DisableCircularReferenceDetect);
+                SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.WriteNullBooleanAsFalse,
+                SerializerFeature.WriteNullListAsEmpty, SerializerFeature.DisableCircularReferenceDetect,
+                // handle type of Long error for table primary key
+                SerializerFeature.BrowserCompatible);
         fastConverter.setFastJsonConfig(config);
         fastConverter.setDefaultCharset(IOUtils.UTF8);
         // 添加到第一个位置
