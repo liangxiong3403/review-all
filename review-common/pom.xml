@@ -25,6 +25,12 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
+        <!-- excel处理 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>${easyexcel.version}</version>
+        </dependency>
         <!-- devtools热部署插件,生产环境自动关闭 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,12 +70,6 @@
             <artifactId>commons-collections4</artifactId>
             <version>${commons.collections4.version}</version>
         </dependency>
-        <!-- excel处理 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>easyexcel</artifactId>
-            <version>${easyexcel.version}</version>
-        </dependency>
         <!-- 工具类大集合(封装各种工具类),参考:https://hutool.cn/docs/#/ -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -82,21 +82,24 @@
             <artifactId>itextpdf</artifactId>
             <version>${itextpdf.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-asian</artifactId>
+            <version>${itext-asian.version}</version>
+            <optional>true</optional>
+        </dependency>
         <!-- POI封装框架,用于简化POI调用 -->
         <dependency>
             <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-base</artifactId>
+            <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>${easypoi.version}</version>
         </dependency>
+        <!-- word处理 -->
         <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-annotation</artifactId>
-            <version>${easypoi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-web</artifactId>
-            <version>${easypoi.version}</version>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>ooxml-schemas</artifactId>
+            <version>${ooxml-schemas.version}</version>
+            <optional>true</optional>
         </dependency>
         <!-- 二维码处理框架 -->
         <dependency>
