@@ -32,16 +32,16 @@
             <version>${easyexcel.version}</version>
             <exclusions>
                 <exclusion>
+                    <groupId>org.apache.poi</groupId>
                     <artifactId>poi</artifactId>
-                    <groupId>org.apache.poi</groupId>
                 </exclusion>
                 <exclusion>
+                    <groupId>org.apache.poi</groupId>
                     <artifactId>poi-ooxml</artifactId>
-                    <groupId>org.apache.poi</groupId>
                 </exclusion>
                 <exclusion>
-                    <artifactId>poi-ooxml-schemas</artifactId>
                     <groupId>org.apache.poi</groupId>
+                    <artifactId>poi-ooxml-schemas</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -59,6 +59,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.objenesis</groupId>
+                    <artifactId>objenesis</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>asm</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- IO处理 -->
         <dependency>
@@ -107,12 +117,32 @@
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>${easypoi.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-lang3</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- word处理 -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>ooxml-schemas</artifactId>
             <version>${ooxml-schemas.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.xmlbeans</groupId>
+                    <artifactId>xmlbeans</artifactId>
+                </exclusion>
+            </exclusions>
             <optional>true</optional>
         </dependency>
         <!-- 二维码处理框架 -->
@@ -138,12 +168,32 @@
             <groupId>org.pac4j</groupId>
             <artifactId>spring-security-pac4j</artifactId>
             <version>${spring.security.pac4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.pac4j</groupId>
+                    <artifactId>pac4j-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
             <artifactId>pac4j-cas</artifactId>
             <version>${pac4j.cas.version}</version>
             <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcpkix-jdk15on</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.errorprone</groupId>
+                    <artifactId>error_prone_annotations</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- Java处理shell框架 -->
         <dependency>
@@ -162,6 +212,12 @@
             <groupId>net.oschina.j2cache</groupId>
             <artifactId>j2cache-spring-boot2-starter</artifactId>
             <version>${j2cache.boot2.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>net.oschina.j2cache</groupId>
@@ -180,7 +236,17 @@
                     <groupId>redis.clients</groupId>
                     <artifactId>jedis</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.objenesis</groupId>
+                    <artifactId>objenesis</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <!-- j2cache fst:net.oschina.j2cache.util.FSTSerializer所需 -->
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <version>${objenesis.version}</version>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>

@@ -37,3 +37,6 @@ mybatis-plus:
 logging:
     level:
         org.liangxiong.demo.mapper: DEBUG
+j2cache:
+    config-location: /j2cache.properties
+    redisClient: lettuce

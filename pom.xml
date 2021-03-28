@@ -47,6 +47,7 @@
         <caffeine.version>3.0.0</caffeine.version>
         <j2cache-core.version>2.8.2-release</j2cache-core.version>
         <j2cache.boot2.version>2.8.0-release</j2cache.boot2.version>
+        <objenesis.version>3.2</objenesis.version>
         <jedis.version>2.10.2</jedis.version>
         <hutool.version>5.6.0</hutool.version>
         <itextpdf.version>5.5.13.2</itextpdf.version>
