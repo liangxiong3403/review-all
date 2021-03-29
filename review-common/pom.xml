@@ -112,6 +112,11 @@
             <version>${itext-asian.version}</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
+            <version>${itext-layout.version}</version>
+        </dependency>
         <!-- POI封装框架,用于简化POI调用 -->
         <dependency>
             <groupId>cn.afterturn</groupId>
