@@ -93,12 +93,6 @@
             <artifactId>hanlp</artifactId>
             <version>${hanlp.version}</version>
         </dependency>
-        <!-- spring boot admin 服务端 -->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-server</artifactId>
-            <version>${boot-admin.version}</version>
-        </dependency>
         <!-- 图片处理组件 -->
         <dependency>
             <groupId>net.coobird</groupId>

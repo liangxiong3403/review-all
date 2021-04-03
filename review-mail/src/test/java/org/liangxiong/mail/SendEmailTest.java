@@ -9,7 +9,6 @@ import org.simplejavamail.config.ConfigLoader;
 import org.simplejavamail.email.EmailBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -28,7 +27,7 @@ public class SendEmailTest {
     private Mailer mailer;
 
     @Before
-    public void init(){
+    public void init() {
         ConfigLoader.loadProperties("mail.properties", /* addProperties = */ true);
     }
 

@@ -1,4 +1,4 @@
-package org.liangxiong.review.client.config;
+package org.liangxiong.review.server.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -36,9 +36,10 @@ public class Knife4jConfiguration {
                 .groupName(applicationName)
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("org.liangxiong.review.client.controller"))
+                .apis(RequestHandlerSelectors.basePackage("org.liangxiong.review.server.controller"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
     }
+
 }

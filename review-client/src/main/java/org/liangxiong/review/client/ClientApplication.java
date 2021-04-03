@@ -6,7 +6,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import springfox.documentation.oas.annotations.EnableOpenApi;
 
 /**
  * @author liangxiong
@@ -16,7 +15,6 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
  **/
 @EnableFeignClients(basePackageClasses = HelloClient.class)
 @MapperScan(basePackageClasses = UserMapper.class)
-@EnableOpenApi
 @SpringBootApplication(scanBasePackages = {"org.liangxiong.review.client", "org.liangxiong.review.api.fallback"})
 public class ClientApplication {
 

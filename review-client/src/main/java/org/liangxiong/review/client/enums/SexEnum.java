@@ -39,4 +39,9 @@ public enum SexEnum {
      */
     @JsonValue
     private String description;
+
+    @Override
+    public String toString() {
+        return this.description;
+    }
 }

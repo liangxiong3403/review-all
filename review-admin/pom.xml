@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>review-all</artifactId>
+        <groupId>org.liangxiong</groupId>
+        <version>1.0.0.RELEASE</version>
+    </parent>
+    <version>${project.parent.version}</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>review-admin</artifactId>
+    <name>review-admin</name>
+    <description>监控管理服务</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.liangxiong</groupId>
+            <artifactId>review-core</artifactId>
+        </dependency>
+        <!-- spring boot admin 服务端 -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
+            <version>${boot-admin.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

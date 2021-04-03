@@ -28,16 +28,16 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // 那些地址需要跨域处理
         registry.addMapping("/**")
-            // 那些origin需要跨域处理(域:协议+主机IP+端口号)
-            .allowedOrigins("*")
-            // 允许那些方法进行跨域访问
-            .allowedMethods("PUT", "DELETE", "GET", "POST", "OPTIONS", "HEAD")
-            // 允许哪些请求头进行跨域访问
-            .allowedHeaders("*")
-            // 是否支持用户凭证
-            .allowCredentials(false)
-            // 客户端缓存前一个响应时间
-            .maxAge(3600);
+                // 那些origin需要跨域处理(域:协议+主机IP+端口号)
+                .allowedOrigins("*")
+                // 允许那些方法进行跨域访问
+                .allowedMethods("PUT", "DELETE", "GET", "POST", "OPTIONS", "HEAD")
+                // 允许哪些请求头进行跨域访问
+                .allowedHeaders("*")
+                // 是否支持用户凭证
+                .allowCredentials(false)
+                // 客户端缓存前一个响应时间
+                .maxAge(3600);
     }
 
     /**
@@ -54,7 +54,9 @@ public class WebConfiguration implements WebMvcConfigurer {
                 SerializerFeature.WriteNullStringAsEmpty, SerializerFeature.WriteNullBooleanAsFalse,
                 SerializerFeature.WriteNullListAsEmpty, SerializerFeature.DisableCircularReferenceDetect,
                 // handle type of Long error for table primary key
-                SerializerFeature.BrowserCompatible);
+                SerializerFeature.BrowserCompatible,
+                // handle enum property for entity
+                SerializerFeature.WriteEnumUsingToString);
         fastConverter.setFastJsonConfig(config);
         fastConverter.setDefaultCharset(IOUtils.UTF8);
         // 添加到第一个位置
