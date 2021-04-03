@@ -14,8 +14,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.liangxiong</groupId>
-            <artifactId>review-core</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!-- spring boot admin 服务端 -->
         <dependency>
