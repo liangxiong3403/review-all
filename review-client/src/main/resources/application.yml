@@ -36,7 +36,7 @@ mybatis-plus:
     mapper-locations: classpath*:/mapper/**/*.xml
 logging:
     level:
-        org.liangxiong.demo.mapper: DEBUG
+        org.liangxiong.review.client.mapper: DEBUG
 j2cache:
     config-location: /j2cache.properties
     redisClient: lettuce
