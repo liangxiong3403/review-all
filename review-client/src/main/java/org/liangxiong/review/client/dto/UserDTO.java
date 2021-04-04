@@ -1,7 +1,10 @@
 package org.liangxiong.review.client.dto;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @author liangxiong
@@ -29,4 +32,10 @@ public class UserDTO {
      */
     @Excel(name = "邮箱", orderNum = "3")
     private String email;
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date startTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date endTime;
 }

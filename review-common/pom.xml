@@ -107,19 +107,9 @@
         <!-- PDF处理工具类 -->
         <dependency>
             <groupId>com.itextpdf</groupId>
-            <artifactId>itextpdf</artifactId>
-            <version>${itextpdf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itext-asian</artifactId>
-            <version>${itext-asian.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>layout</artifactId>
-            <version>${itext-layout.version}</version>
+            <artifactId>itext7-core</artifactId>
+            <version>${itext-core.version}</version>
+            <type>pom</type>
         </dependency>
         <!-- POI封装框架,用于简化POI调用 -->
         <dependency>

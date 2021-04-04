@@ -4,12 +4,17 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.pdf.entity.PdfExportParams;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.liangxiong.common.enhance.ChinesePdfExportUtil;
+import org.liangxiong.common.handler.CustomerWriteHandler;
 import org.liangxiong.review.client.dto.UserDTO;
 import org.liangxiong.review.client.entity.User;
 import org.liangxiong.review.client.listener.UploadUserListener;
@@ -34,6 +39,7 @@ import java.util.stream.Collectors;
  **/
 @RequestMapping("/user")
 @RestController
+@Slf4j
 public class UserController {
 
     @Resource
@@ -99,7 +105,8 @@ public class UserController {
         response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xls");
         List<User> data = list();
         ServletOutputStream outputStream = response.getOutputStream();
-        EasyExcel.write(outputStream, User.class).sheet("模板").doWrite(data);
+        EasyExcel.write(outputStream, User.class).sheet("模板")
+                .registerWriteHandler(new CustomerWriteHandler()).doWrite(data);
     }
 
     @PostMapping("/uploadByEasyPoi")
@@ -124,5 +131,33 @@ public class UserController {
     public String uploadByEasyExcel(@RequestParam("file") MultipartFile file) throws IOException {
         EasyExcel.read(file.getInputStream(), UserDTO.class, new UploadUserListener(userService)).sheet(0).doRead();
         return "success";
+    }
+
+    /**
+     * notice:PDF内容宽度或者单元格高度设置不当会导致内容缺失
+     *
+     * @param response
+     */
+    @GetMapping("/exportPdfByEasyPoi")
+    public void exportPdfByEasyPoi(HttpServletResponse response) {
+        response.setContentType("application/pdf");
+        response.setCharacterEncoding("utf-8");
+        try (ServletOutputStream outputStream = response.getOutputStream()) {
+            String fileName = URLEncoder.encode("用户数据", "UTF-8").replaceAll("\\+", "%20");
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".pdf");
+            List<User> data = list();
+            PdfExportParams pdfExportParams = new PdfExportParams();
+            ChinesePdfExportUtil.exportPdf(pdfExportParams, User.class, data, outputStream);
+        } catch (IOException e) {
+            log.error("export pdf error: {}", e.getMessage());
+        }
+    }
+
+    @PostMapping("/format")
+    public String format(@RequestBody UserDTO dto) {
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        return String.join("-",
+                DateUtil.beginOfDay(dto.getStartTime()).toString(pattern),
+                DateUtil.endOfDay(dto.getEndTime()).toString(pattern));
     }
 }

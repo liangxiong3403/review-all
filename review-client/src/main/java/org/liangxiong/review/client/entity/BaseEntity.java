@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.liangxiong.review.client.converter.LocalDateTimeConverter;
+import org.liangxiong.common.converter.LocalDateTimeConverter;
 
 import java.time.LocalDateTime;
 

@@ -34,27 +34,27 @@ import java.util.List;
 @ContentRowHeight(50)
 @ColumnWidth(20)
 @ContentStyle(horizontalAlignment = HorizontalAlignment.CENTER)
-@HeadStyle(horizontalAlignment = HorizontalAlignment.CENTER)
+@HeadStyle(horizontalAlignment = HorizontalAlignment.CENTER, fillForegroundColor = 57)
 public class User extends BaseEntity {
 
     /**
      * 用户名
      */
-    @Excel(name = "用户名", orderNum = "4", width = 8)
+    @Excel(name = "用户名", orderNum = "4", width = 16)
     @ExcelProperty(value = "用户名", index = 3)
     private String name;
 
     /**
      * 年龄
      */
-    @Excel(name = "年龄", orderNum = "5", width = 10, suffix = "岁")
+    @Excel(name = "年龄", orderNum = "5", width = 8, suffix = "岁")
     @ExcelProperty(value = "年龄", index = 4)
     private Integer age;
 
     /**
      * 邮箱
      */
-    @Excel(name = "邮箱", orderNum = "6", width = 20)
+    @Excel(name = "邮箱", orderNum = "6", width = 25)
     @ExcelProperty(value = "邮箱", index = 5)
     @ColumnWidth(30)
     private String email;
