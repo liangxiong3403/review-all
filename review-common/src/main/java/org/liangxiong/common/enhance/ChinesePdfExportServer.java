@@ -9,6 +9,8 @@ import cn.afterturn.easypoi.pdf.styler.IPdfExportStyler;
 import cn.afterturn.easypoi.pdf.styler.PdfExportStylerDefaultImpl;
 import cn.afterturn.easypoi.util.PoiPublicUtil;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -48,6 +50,8 @@ public class ChinesePdfExportServer extends PdfExportServer {
 
     private boolean isListData = false;
 
+    private static final Color COLOR = DeviceRgb.GREEN;
+
     /**
      * 只能为实例变量,否则报错: Pdf indirect object belongs to other PDF document. Copy object to current pdf document
      */
@@ -80,10 +84,10 @@ public class ChinesePdfExportServer extends PdfExportServer {
             List<ExcelExportEntity> excelParams = new ArrayList<>();
             if (entity.isAddIndex()) {
             }
-            Field[] fileds = PoiPublicUtil.getClassFields(pojoClass);
-            ExcelTarget etarget = pojoClass.getAnnotation(ExcelTarget.class);
-            String targetId = etarget == null ? null : etarget.value();
-            getAllExcelField(entity.getExclusions(), targetId, fileds, excelParams, pojoClass,
+            Field[] fields = PoiPublicUtil.getClassFields(pojoClass);
+            ExcelTarget target = pojoClass.getAnnotation(ExcelTarget.class);
+            String targetId = target == null ? null : target.value();
+            getAllExcelField(entity.getExclusions(), targetId, fields, excelParams, pojoClass,
                     null, null);
             createPdfByExportEntity(entity, excelParams, dataSet);
         } catch (Exception e) {
@@ -141,12 +145,13 @@ public class ChinesePdfExportServer extends PdfExportServer {
                 }
             } else {
                 Object value = getCellValue(entity, t);
+                String handleEmptyText = value == null ? "" : String.valueOf(value);
                 if (entity.getType() == 1) {
-                    createStringCell(table, value == null ? "" : String.valueOf(value), entity,
-                            rowHeight, 1, maxHeight);
+                    createStringCell(table, handleEmptyText, entity,
+                            rowHeight, 1, maxHeight, Boolean.TRUE);
                 } else {
-                    createImageCell(table, value == null ? "" : String.valueOf(value), entity, rowHeight,
-                            1, maxHeight);
+                    createImageCell(table, handleEmptyText, entity, rowHeight,
+                            1, maxHeight, Boolean.TRUE);
                 }
             }
         }
@@ -167,11 +172,12 @@ public class ChinesePdfExportServer extends PdfExportServer {
         for (ExcelExportEntity excelParam : excelParams) {
             entity = excelParam;
             Object value = getCellValue(entity, obj);
+            String handleEmptyText = value == null ? "" : String.valueOf(value);
             if (entity.getType() == 1) {
-                createStringCell(table, value == null ? "" : String.valueOf(value), entity, rowHeight);
+                createStringCell(table, handleEmptyText, entity, rowHeight, Boolean.TRUE);
             } else {
-                createImageCell(table, value == null ? "" : String.valueOf(value), entity, rowHeight, 1,
-                        1);
+                createImageCell(table, handleEmptyText, entity, rowHeight, 1,
+                        1, Boolean.TRUE);
             }
         }
     }
@@ -226,7 +232,7 @@ public class ChinesePdfExportServer extends PdfExportServer {
     }
 
     private void createHeaderAndTitle(PdfExportParams entity, Table table,
-                                      List<ExcelExportEntity> excelParams) throws IOException {
+                                      List<ExcelExportEntity> excelParams) {
         int fieldWidth = getFieldLength(excelParams);
         if (entity.getTitle() != null) {
             createHeaderRow(entity, table, fieldWidth);
@@ -241,20 +247,26 @@ public class ChinesePdfExportServer extends PdfExportServer {
      * @param table
      */
     private int createTitleRow(PdfExportParams title, Table table,
-                               List<ExcelExportEntity> excelParams) throws IOException {
+                               List<ExcelExportEntity> excelParams) {
         int rows = getRowNums(excelParams, false);
         for (ExcelExportEntity entity : excelParams) {
             if (entity.getList() != null) {
                 if (StringUtils.isNotBlank(entity.getName())) {
-                    createStringCell(table, entity.getName(), entity, 10, entity.getList().size(),
-                            1);
+                    Cell cell = createStringCell(table, entity.getName(), entity, 10, entity.getList().size(),
+                            1, Boolean.FALSE);
+                    cell.setBackgroundColor(COLOR);
+                    table.addCell(cell);
                 }
                 List<ExcelExportEntity> sTitle = entity.getList();
                 for (ExcelExportEntity excelExportEntity : sTitle) {
-                    createStringCell(table, excelExportEntity.getName(), excelExportEntity, 10);
+                    Cell cell = createStringCell(table, excelExportEntity.getName(), excelExportEntity, 10, Boolean.FALSE);
+                    cell.setBackgroundColor(COLOR);
+                    table.addCell(cell);
                 }
             } else {
-                createStringCell(table, entity.getName(), entity, 10, 1, rows == 2 ? 2 : 1);
+                Cell cell = createStringCell(table, entity.getName(), entity, 10, 1, rows == 2 ? 2 : 1, Boolean.FALSE);
+                cell.setBackgroundColor(COLOR);
+                table.addCell(cell);
             }
         }
         return rows;
@@ -267,6 +279,8 @@ public class ChinesePdfExportServer extends PdfExportServer {
         iCell.setVerticalAlignment(VerticalAlignment.MIDDLE);
         iCell.setHeight(entity.getTitleHeight());
         iCell.add(new Paragraph(entity.getTitle()));
+        iCell.setBackgroundColor(COLOR);
+        iCell.setFont(font);
         table.addCell(iCell);
         if (entity.getSecondTitle() != null) {
             iCell = new Cell(1, fieldLength + 1);
@@ -274,36 +288,42 @@ public class ChinesePdfExportServer extends PdfExportServer {
             iCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
             iCell.setVerticalAlignment(VerticalAlignment.MIDDLE);
             iCell.setHeight(entity.getSecondTitleHeight());
+            iCell.setBackgroundColor(COLOR);
+            iCell.setFont(font);
             table.addCell(iCell);
         }
     }
 
     private Cell createStringCell(Table table, String text, ExcelExportEntity entity,
-                                  int rowHeight, int colspan, int rowspan) {
+                                  int rowHeight, int colspan, int rowspan, boolean addToTable) {
         Cell iCell = new Cell(rowspan, colspan);
         iCell.add(new Paragraph(text));
         iCell.setFont(font);
         // 居中对齐
         iCell.setTextAlignment(TextAlignment.CENTER);
         styler.setCellStyler(iCell, entity, text);
-        table.addCell(iCell);
+        if (addToTable) {
+            table.addCell(iCell);
+        }
         return iCell;
     }
 
     private Cell createStringCell(Table table, String text, ExcelExportEntity entity,
-                                  int rowHeight) {
+                                  int rowHeight, boolean addToTable) {
         Cell iCell = new Cell();
         iCell.add(new Paragraph(text));
         iCell.setFont(font);
         // 居中对齐
         iCell.setTextAlignment(TextAlignment.CENTER);
         styler.setCellStyler(iCell, entity, text);
-        table.addCell(iCell);
+        if (addToTable) {
+            table.addCell(iCell);
+        }
         return iCell;
     }
 
     private Cell createImageCell(Table table, String text, ExcelExportEntity entity,
-                                 int rowHeight, int rowSpan, int colSpan) {
+                                 int rowHeight, int rowSpan, int colSpan, boolean addToTable) {
 
         Image image = new Image(ImageDataFactory.create(ImageCache.getImage(text)));
         Cell iCell = new Cell(rowSpan, colSpan);
@@ -313,7 +333,9 @@ public class ChinesePdfExportServer extends PdfExportServer {
         // 居中对齐
         iCell.setTextAlignment(TextAlignment.CENTER);
         styler.setCellStyler(iCell, entity, text);
-        table.addCell(iCell);
+        if (addToTable) {
+            table.addCell(iCell);
+        }
         return iCell;
     }
 }
