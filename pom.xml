@@ -79,7 +79,7 @@
         <zookeeper.version>3.4.14</zookeeper.version>
         <fastdfs.oschina.version>1.27.0.0</fastdfs.oschina.version>
         <fastdfs.tobato.version>1.27.2</fastdfs.tobato.version>
-        <flyway-maven-plugin.version>7.7.2</flyway-maven-plugin.version>
+        <flyway.version>7.7.2</flyway.version>
         <smart-doc-plugin.version>1.1.8</smart-doc-plugin.version>
     </properties>
 

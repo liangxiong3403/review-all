@@ -272,5 +272,11 @@
             <artifactId>commons-pool2</artifactId>
             <version>${commons.pool2.version}</version>
         </dependency>
+        <!-- FlywayAutoConfiguration -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
+        </dependency>
     </dependencies>
 </project>
