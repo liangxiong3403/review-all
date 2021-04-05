@@ -226,6 +226,10 @@
                     <user>root</user>
                     <password>admin</password>
                     <driver>com.mysql.cj.jdbc.Driver</driver>
+                    <locations>
+                        <!-- 特别注意文件名称是大写字幕V+双下划线,比如:V1__user.sql -->
+                        <location>filesystem:${basedir}/src/main/resources/db/migration/</location>
+                    </locations>
                 </configuration>
             </plugin>
             <plugin>
