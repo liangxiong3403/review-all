@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 05/04/2021 18:13:37
+ Date: 07/04/2021 22:18:29
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `ID` bigint(20) NOT NULL,
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `AGE` int(11) NULL DEFAULT NULL,
   `EMAIL` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -31,12 +31,9 @@ CREATE TABLE `user`  (
   `CREATED_TIME` datetime(0) NULL DEFAULT NULL,
   `UPDATED_TIME` datetime(0) NULL DEFAULT NULL,
   `UPDATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `CREATED_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `TENANT_ID` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of user
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS = 1;
