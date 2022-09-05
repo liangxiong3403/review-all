@@ -181,6 +181,17 @@
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+            <id>review-releases</id>
+            <url>http://localhost:8081/repository/review-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>review-snapshots</id>
+            <url>http://localhost:8081/repository/review-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>

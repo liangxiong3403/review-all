@@ -5,6 +5,7 @@
         <groupId>org.liangxiong</groupId>
         <artifactId>review-all</artifactId>
         <version>1.0.0.RELEASE</version>
+        <relativePath>../../review-all/pom.xml</relativePath>
     </parent>
     <version>${project.parent.version}</version>
     <modelVersion>4.0.0</modelVersion>
